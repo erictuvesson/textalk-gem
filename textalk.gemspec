@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 $:.push File.expand_path("../lib", __FILE__)
 
 # Maintain your gem's version:
@@ -18,6 +20,4 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 5.1.6"
   s.add_dependency "faraday", "~> 0.15"
-
-  s.add_development_dependency "sqlite3"
 end

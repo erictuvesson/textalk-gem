@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Textalk
   module ArticleGroup
     def count(params)

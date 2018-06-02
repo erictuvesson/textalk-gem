@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Textalk
   class Request
     def initialize(method: nil, params: {})

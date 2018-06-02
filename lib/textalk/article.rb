@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Textalk
   module Article
     def properties
