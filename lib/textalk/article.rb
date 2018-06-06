@@ -13,6 +13,7 @@ module Textalk
         "choiceOptions",
         "choiceOptionPrices",
         "choices",
+        "introductionText",
         "description",
         "draft",
         "ean",
@@ -28,7 +29,7 @@ module Textalk
         "presentationOnly",
         "price",
         "relationLists",
-        "showInarticlegroups",
+        "showInArticlegroups",
         "sku",
         "stock",
         "type",
@@ -42,7 +43,7 @@ module Textalk
     end
 
     def properties_map
-      Hash[*properties.map{ |obj| [obj.id, obj] }.flatten]
+      Hash[*properties.map{ |obj| [obj, true] }.flatten]
     end
 
     def count(params, select_properties: properties_map)
@@ -64,7 +65,8 @@ module Textalk
     private
 
     def handle_resp(resp)
-      JSON.parse resp.body["result"]
+      byebug
+      JSON.parse(resp.body)["result"]
     end
 
     extend self

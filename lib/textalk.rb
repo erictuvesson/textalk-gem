@@ -6,8 +6,8 @@ require "textalk/configuration"
 require "textalk/request"
 
 module Textalk
-  autoload :article, "textalk/article"
-  autoload :article_group, "textalk/article_group"
+  autoload :Article, "textalk/article"
+  autoload :ArticleGroup, "textalk/article_group"
 
   define_setting :endpoint,   ENV["TEXTALK_ENDPOINT"]
   define_setting :api_key,    ENV["TEXTALK_API_KEY"]
