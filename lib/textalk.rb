@@ -8,6 +8,7 @@ require "textalk/request"
 module Textalk
   autoload :Article, "textalk/article"
   autoload :ArticleGroup, "textalk/article_group"
+  autoload :Url, "textalk/url"
 
   define_setting :endpoint,   ENV["TEXTALK_ENDPOINT"]
   define_setting :api_key,    ENV["TEXTALK_API_KEY"]
