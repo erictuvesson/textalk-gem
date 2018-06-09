@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module Textalk
+  # Articlegroup Class
+  # http://api.textalk.se/webshop/api-classes/Articlegroup/
   module ArticleGroup
     def properties
       [
@@ -24,20 +26,24 @@ module Textalk
       Hash[*properties.map{ |obj| [obj, true] }.flatten]
     end
 
-    def count(params)
-      Request.new(method: "Articlegroup.count", params: { }).run
+    def count(query)
+      handle_resp Request.new(method: "Articlegroup.count", params: [query]).run
     end
 
-    def list(params = {}, select_properties: properties_map)
-      handle_resp Request.new(method: "Articlegroup.list", params: [select_properties, params]).run
+    def get(params, select_properties: properties_map)
+      handle_resp Request.new(method: "Articlegroup.get", params: [select_properties, params]).run
     end
 
-    def get(params)
-      Request.new(method: "Articlegroup.get", params: params).run
+    def get_schema
+      handle_resp Request.new(method: "Articlegroup.getSchema", params: []).run
+    end
+
+    def list(query = {}, select_properties: properties_map)
+      handle_resp Request.new(method: "Articlegroup.list", params: [select_properties, query]).run
     end
 
     def set(params)
-      Request.new(method: "Articlegroup.set", params: params).run
+      handle_resp Request.new(method: "Articlegroup.set", params: [params]).run
     end
 
     private
