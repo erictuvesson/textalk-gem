@@ -5,17 +5,18 @@ Short description and motivation.
 How to use my plugin.
 
 ```ruby
-Textalk::Article.list()
+Textalk::Article.list
 ```
 
 ```ruby
-Textalk::Article.set(uid, {
+Textalk::Article.set(1234567, {
   "attributes": {
-    "28773": {
-      sv: "Tillverkad av polyester och elastan.",
-      en: "Made of polyester and elastane."
+    "12345": {
+      sv: "Tillverkad av 82% Polyester och 18% Elastan.",
+      en: "Made of 82% Polyester and 18% Elastane."
     }
-  }
+  },
+  "weight": 1000
 })
 ```
 

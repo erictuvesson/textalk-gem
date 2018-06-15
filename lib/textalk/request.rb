@@ -19,7 +19,7 @@ module Textalk
 
     def run
       @connection.post do |req|
-        req.headers['Content-Type'] = 'application/json'
+        req.headers["Content-Type"] = "application/json"
         req.body = @body.to_json
       end
     end
