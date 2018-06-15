@@ -18,3 +18,5 @@ module Textalk
     "#{Textalk.endpoint}?webshop=#{Textalk.webshop_id}&auth=#{Textalk.api_key}"
   end
 end
+
+require "textalk/railtie" if defined?(Rails)
