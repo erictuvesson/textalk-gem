@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "faraday"
+require "write_xlsx"
 
 require "textalk/configuration"
 require "textalk/request"
