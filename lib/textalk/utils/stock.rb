@@ -37,6 +37,8 @@ module Textalk
         # Add summery field
         row = @articles.size + 1
         worksheet.write(row, 0, "Summery", summery_format)
+        worksheet.write(row, 1, "", summery_format)
+        worksheet.write(row, 2, "", summery_format)
         worksheet.write(row, 3, "Total", summery_format)
 
         worksheet.write(row + 1, 0, "=ROWS(A2:A#{row})", content_format)
@@ -52,7 +54,7 @@ module Textalk
           font: "Courier New",
           bold: true,
           align: "center",
-          bottom: true
+          bottom: 1
         }
       end
 
@@ -67,8 +69,8 @@ module Textalk
           font: "Courier New",
           bold: true,
           align: "right",
-          bottom: true,
-          top: true
+          bottom: 1,
+          top: 1
         }
       end
 
