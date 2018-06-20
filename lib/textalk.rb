@@ -11,6 +11,11 @@ module Textalk
   autoload :ArticleGroup, "textalk/article_group"
   autoload :Url, "textalk/url"
 
+  module Utils
+    autoload :Backup, "textalk/utils/backup"
+    autoload :Stock, "textalk/utils/stock"
+  end
+
   define_setting :endpoint,   ENV["TEXTALK_ENDPOINT"]
   define_setting :api_key,    ENV["TEXTALK_API_KEY"]
   define_setting :webshop_id, ENV["TEXTALK_WEBSHOP_ID"]

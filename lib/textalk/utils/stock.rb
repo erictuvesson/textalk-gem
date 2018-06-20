@@ -16,6 +16,7 @@ module Textalk
 
         header_format = workbook.add_format(header_format_properties)
         content_format = workbook.add_format(content_format_properties)
+        summery_format = workbook.add_format(summery_format_properties)
 
         worksheet.set_column(0, 0, 15)
         worksheet.write(0, 0, "#", header_format)
@@ -32,6 +33,14 @@ module Textalk
           worksheet.write(1 + index, 2, article["name"]["sv"], content_format)
           worksheet.write(1 + index, 3, article["stock"]["stock"], content_format)
         end
+
+        # Add summery field
+        row = @articles.size + 1
+        worksheet.write(row, 0, "Summery", summery_format)
+        worksheet.write(row, 3, "Total", summery_format)
+
+        worksheet.write(row + 1, 0, "=ROWS(A2:A#{row})", content_format)
+        worksheet.write(row + 1, 3, "=SUM(D2:D#{row})", content_format)
       end
 
       def generate_data(article_query = {})
@@ -42,13 +51,24 @@ module Textalk
         {
           font: "Courier New",
           bold: true,
-          align: "center"
+          align: "center",
+          bottom: true
         }
       end
 
       def content_format_properties
         {
           font: "Courier New"
+        }
+      end
+
+      def summery_format_properties
+        {
+          font: "Courier New",
+          bold: true,
+          align: "right",
+          bottom: true,
+          top: true
         }
       end
 
