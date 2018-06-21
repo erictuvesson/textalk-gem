@@ -3,6 +3,7 @@
 require "faraday"
 require "write_xlsx"
 require "prawn"
+require "prawn/measurement_extensions"
 
 require "textalk/configuration"
 require "textalk/request"
@@ -16,6 +17,7 @@ module Textalk
 
   module Utils
     autoload :Backup, "textalk/utils/backup"
+    autoload :Labels, "textalk/utils/labels"
     autoload :Stock, "textalk/utils/stock"
   end
 

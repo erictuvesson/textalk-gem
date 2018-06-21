@@ -21,4 +21,5 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 5.1.6"
   s.add_dependency "faraday", "~> 0.15"
   s.add_dependency "write_xlsx"
+  s.add_dependency "prawn", "~> 2.2.2"
 end
