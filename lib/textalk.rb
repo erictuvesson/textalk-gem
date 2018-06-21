@@ -11,6 +11,7 @@ require "textalk/model"
 module Textalk
   autoload :Article, "textalk/article"
   autoload :ArticleGroup, "textalk/article_group"
+  autoload :ArticleVariant, "textalk/article_variant"
   autoload :Url, "textalk/url"
 
   module Utils
