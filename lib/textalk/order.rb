@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
 module Textalk
-  module Order
-    def list(params)
-      Request.new(method: "Order.list", params: params).run
-    end
+  class Order < Model
+    class << self
+      def list(params)
+        handle_response Request.new(method: "Order.list", params: params).run
+      end
 
-    def get(params)
-      Request.new(method: "Order.get", params: params).run
+      def get(params)
+        handle_response Request.new(method: "Order.get", params: params).run
+      end
     end
-
-    extend self
   end
 end

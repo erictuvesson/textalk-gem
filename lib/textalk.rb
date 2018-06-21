@@ -2,9 +2,11 @@
 
 require "faraday"
 require "write_xlsx"
+require "prawn"
 
 require "textalk/configuration"
 require "textalk/request"
+require "textalk/model"
 
 module Textalk
   autoload :Article, "textalk/article"
