@@ -2,7 +2,6 @@
 
 require "faraday"
 require "write_xlsx"
-require "prawn"
 
 require "textalk/configuration"
 require "textalk/request"
@@ -20,7 +19,6 @@ module Textalk
   autoload :CustomPage, "textalk/custom_page"
   autoload :Customer, "textalk/customer"
   autoload :EventListener, "textalk/event_listener"
-  autoload :Images, "textalk/images"
   autoload :IntegrationType, "textalk/integration_type"
   autoload :Integration, "textalk/integration"
   autoload :Language, "textalk/language"
@@ -42,6 +40,7 @@ module Textalk
   define_setting :endpoint,   ENV["TEXTALK_ENDPOINT"]
   define_setting :api_key,    ENV["TEXTALK_API_KEY"]
   define_setting :webshop_id, ENV["TEXTALK_WEBSHOP_ID"]
+  define_setting :debug,      ENV["TEXTALK_DEBUG"]
 
   def self.build_url
     "#{Textalk.endpoint}?webshop=#{Textalk.webshop_id}&auth=#{Textalk.api_key}"

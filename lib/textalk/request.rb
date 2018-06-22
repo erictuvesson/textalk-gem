@@ -12,7 +12,7 @@ module Textalk
 
       @connection = Faraday.new(url: Textalk.build_url) do |faraday|
         faraday.request  :url_encoded
-        # faraday.response :logger
+        faraday.response :logger if Textalk.debug
         faraday.adapter  Faraday.default_adapter
       end
     end

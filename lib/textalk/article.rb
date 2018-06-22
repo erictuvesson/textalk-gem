@@ -4,37 +4,51 @@ module Textalk
   # Article Class
   # http://api.textalk.se/webshop/api-classes/Article/
   class Article < Model
+    def stock
+      {
+        total: @variables.dig(:stock, :stock),
+        variants: @variables[:variants]
+      }
+    end
+
+    def to_liquid
+      {
+        uid: @variables[:uid],
+        articleNumber: @variables[:articleNumber]
+      }
+    end
+
     class << self
-      def count(query)
-        handle_response Request.new(method: "Article.count", params: [query]).run
+      def count(query = {})
+        create_request("Article.count", [query])
       end
 
       def create(patch, query = {})
-        handle_response Request.new(method: "Article.create", params: [patch, query]).run
+        create_request("Article.create", [patch, query])
       end
 
-      def get(params, selection: true)
-        handle_response Request.new(method: "Article.get", params: [selection, params]).run
+      def get(uid, selection: true)
+        create_request("Article.get", [uid, selection], object: Article)
       end
 
       def get_schema
-        handle_response Request.new(method: "Article.getSchema", params: []).run
+        create_request("Article.getSchema", [])
       end
 
       def list(query = {}, selection: true)
-        handle_response Request.new(method: "Article.list", params: [selection, query]).run
+        create_request("Article.list", [selection, query], object: Article)
       end
 
       def set(uid, patch, query)
-        handle_response Request.new(method: "Article.set", params: [uid, patch, query]).run
+        create_request("Article.set", [uid, patch, query])
       end
 
       def normalize(uid, patch)
-        handle_response Request.new(method: "Article.normalize", params: [uid, patch]).run
+        create_request("Article.normalize", [uid, patch])
       end
 
       def validate(uid, patch)
-        handle_response Request.new(method: "Article.validate", params: [uid, patch]).run
+        create_request("Article.validate", [uid, patch])
       end
     end
   end
