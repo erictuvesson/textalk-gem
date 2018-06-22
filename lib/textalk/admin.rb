@@ -6,23 +6,23 @@ module Textalk
   class Admin < Model
     class << self
       def count(query)
-        handle_response Request.new(method: "Admin.count", params: [query]).run
+        create_request("Admin.count", [query])
       end
 
       def get(params, selection: true)
-        handle_response Request.new(method: "Admin.get", params: [selection, params]).run
+        create_request("Admin.get", [selection, params])
       end
 
       def get_schema
-        handle_response Request.new(method: "Admin.getSchema", params: []).run
+        create_request("Admin.getSchema", [])
       end
 
       def list(query = {}, selection: true)
-        handle_response Request.new(method: "Admin.list", params: [selection, query]).run
+        create_request("Admin.list", [selection, query])
       end
 
       def login(username, password)
-        handle_response Request.new(method: "Admin.login", params: [username, password]).run
+        create_request("Admin.login", [username, password])
       end
     end
   end

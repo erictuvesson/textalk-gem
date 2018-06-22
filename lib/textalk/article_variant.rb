@@ -5,11 +5,11 @@ module Textalk
   class ArticleVariant < Model
     class << self
       def get(params, select_properties: properties_map)
-        handle_resp Request.new(method: "ArticleVariant.get", params: [true, params]).run
+        create_request("ArticleVariant.get", [true, params])
       end
 
       def get_schema
-        handle_resp Request.new(method: "ArticleVariant.getSchema", params: []).run
+        create_request("ArticleVariant.getSchema", [])
       end
     end
   end

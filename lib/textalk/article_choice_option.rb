@@ -6,11 +6,11 @@ module Textalk
   class ArticleChoiceOption < Model
     class << self
       def get(params, selection: true)
-        handle_response Request.new(method: "ArticleChoiceOption.get", params: [selection, params]).run
+        create_request("ArticleChoiceOption.get", [selection, params])
       end
 
       def get_schema
-        handle_response Request.new(method: "ArticleChoiceOption.getSchema", params: []).run
+        create_request("ArticleChoiceOption.getSchema", [])
       end
     end
   end

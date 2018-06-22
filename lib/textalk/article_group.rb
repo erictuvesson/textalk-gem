@@ -6,23 +6,23 @@ module Textalk
   class ArticleGroup < Model
     class << self
       def count(query)
-        handle_response Request.new(method: "Articlegroup.count", params: [query]).run
+        create_request("Articlegroup.count", [query])
       end
 
       def get(params, select_properties: true)
-        handle_response Request.new(method: "Articlegroup.get", params: [select_properties, params]).run
+        create_request("Articlegroup.get", [select_properties, params])
       end
 
       def get_schema
-        handle_response Request.new(method: "Articlegroup.getSchema", params: []).run
+        create_request("Articlegroup.getSchema", [])
       end
 
       def list(query = {}, select_properties: true)
-        handle_response Request.new(method: "Articlegroup.list", params: [select_properties, query]).run
+        create_request("Articlegroup.list", [select_properties, query])
       end
 
       def set(params)
-        handle_response Request.new(method: "Articlegroup.set", params: [params]).run
+        create_request("Articlegroup.set", [params])
       end
     end
   end
