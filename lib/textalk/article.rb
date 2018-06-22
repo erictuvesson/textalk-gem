@@ -9,28 +9,32 @@ module Textalk
         handle_response Request.new(method: "Article.count", params: [query]).run
       end
 
-      def create(patch)
-        handle_response Request.new(method: "Article.create", params: [patch]).run
+      def create(patch, query = {})
+        handle_response Request.new(method: "Article.create", params: [patch, query]).run
       end
 
-      def get(params, properties: true)
-        handle_response Request.new(method: "Article.get", params: [properties, params]).run
+      def get(params, selection: true)
+        handle_response Request.new(method: "Article.get", params: [selection, params]).run
       end
 
       def get_schema
         handle_response Request.new(method: "Article.getSchema", params: []).run
       end
 
-      def list(query = {}, properties: true)
-        handle_response Request.new(method: "Article.list", params: [properties, query]).run
+      def list(query = {}, selection: true)
+        handle_response Request.new(method: "Article.list", params: [selection, query]).run
       end
 
       def set(uid, patch, query)
-        handle_response Request.new(method: "Article.set", params: [uuid, patch, query]).run
+        handle_response Request.new(method: "Article.set", params: [uid, patch, query]).run
       end
 
-      def subscribe_to_stock(uid, email, language)
-        handle_response Request.new(method: "Article.subscribeToStock", params: [uuid, patch, query]).run
+      def normalize(uid, patch)
+        handle_response Request.new(method: "Article.normalize", params: [uid, patch]).run
+      end
+
+      def validate(uid, patch)
+        handle_response Request.new(method: "Article.validate", params: [uid, patch]).run
       end
     end
   end
