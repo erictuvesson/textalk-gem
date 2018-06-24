@@ -3,12 +3,12 @@
 module Textalk
   class Order < Model
     class << self
-      def list(params)
-        handle_response Request.new(method: "Order.list", params: params).run
+      def get(uid, selection = true)
+        create_request("Order.get", [uid, selection], object: Order)
       end
 
-      def get(params)
-        handle_response Request.new(method: "Order.get", params: params).run
+      def list(query = {}, selection = true)
+        create_request("Order.list", [selection, query], object: Order)
       end
     end
   end

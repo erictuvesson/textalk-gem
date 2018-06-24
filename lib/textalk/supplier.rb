@@ -10,7 +10,7 @@ module Textalk
       end
 
       def get(uid)
-        create_request("Supplier.get", [uid], object: Payment)
+        create_request("Supplier.get", [uid], object: Supplier)
       end
 
       def get_schema
@@ -18,7 +18,7 @@ module Textalk
       end
 
       def list(query = {}, selection = true)
-        create_request("Supplier.list", [selection, query], object: Article)
+        create_request("Supplier.list", [selection, query], object: Supplier)
       end
 
       def get_suborders(filter, query: {}, offset = 0, limit = 100)

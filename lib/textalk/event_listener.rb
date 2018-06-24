@@ -5,12 +5,12 @@ module Textalk
   # http://api.textalk.se/webshop/api-classes/EventListener/#
   class EventListener < Model
     class << self
-      def list(query = {}, select_properties: properties_map)
-        handle_response Request.new(method: "EventListener.list", params: [select_properties, query]).run
+      def list(query = {}, selection = true)
+        create_request("EventListener.list", [uid, selection])
       end
       
-      def get(uid, select_properties: properties_map)
-        handle_response Request.new(method: "EventListener.get", params: [uid, select_properties]).run
+      def get(uid, selection = true)
+        create_request("EventListener.get", [uid, selection])
       end
 
       def create(event_name, url)
@@ -19,19 +19,19 @@ module Textalk
           eventName: event_name,
           url: url
         }
-        handle_response Request.new(method: "EventListener.create", params: [data, ["uid", "status"]]).run
+        create_request("EventListener.create", [data, ["uid", "status"]])
       end
 
       def set(uid, patch, query)
-        handle_response Request.new(method: "EventListener.set", params: [uid, patch, query]).run
+        create_request("EventListener.set", [uid, patch, query])
       end
 
       def delete(uid)
-        handle_response Request.new(method: "EventListener.delete", params: [uid]).run
+        create_request("EventListener.delete", [uid])
       end
 
       def get_log(uid)
-        handle_response Request.new(method: "EventListener.getLog", params: [uid]).run
+        create_request("EventListener.getLog", [uid])
       end
     end
   end
