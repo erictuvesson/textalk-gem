@@ -18,7 +18,7 @@ module Textalk
       end
 
       def get(uid, selection: true)
-        create_request("Theme.get", [uid, selection], object: Article)
+        create_request("Theme.get", [uid, selection], object: Theme)
       end
 
       def get_schema
@@ -26,7 +26,7 @@ module Textalk
       end
 
       def list(query = {}, selection: true)
-        create_request("Theme.list", [selection, query], object: Article)
+        create_request("Theme.list", [selection, query], object: Theme)
       end
 
       def select(query)
@@ -35,6 +35,11 @@ module Textalk
 
       def set(uid, patch, query)
         create_request("Theme.set", [uid, patch, query])
+      end
+
+      # Find a theme by the internal component name.
+      def find_by_name(name)
+        Textalk::Theme.list.select { |theme| theme.dig(:params, :component) == name }
       end
     end
   end
