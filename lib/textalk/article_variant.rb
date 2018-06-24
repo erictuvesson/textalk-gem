@@ -12,7 +12,7 @@ module Textalk
         create_request("ArticleVariant.getSchema", [])
       end
       
-      def list(query = {}, selection: true)
+      def list(query = {}, selection = true)
         create_request("ArticleVariant.list", [selection, query], object: ArticleVariant)
       end
     end

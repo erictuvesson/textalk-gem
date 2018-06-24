@@ -13,7 +13,7 @@ module Textalk
         create_request("AuthToken.create", [patch, query])
       end
 
-      def get(params, selection: true)
+      def get(params, selection = true)
         create_request("AuthToken.get", [selection, params])
       end
 
@@ -21,7 +21,7 @@ module Textalk
         create_request("AuthToken.getSchema", [])
       end
 
-      def list(query = {}, selection: true)
+      def list(query = {}, selection = true)
         create_request("AuthToken.list", [selection, query])
       end
 

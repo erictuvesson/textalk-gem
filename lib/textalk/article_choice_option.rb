@@ -5,7 +5,7 @@ module Textalk
   # http://api.textalk.se/webshop/classes/ArticleChoiceOption/
   class ArticleChoiceOption < Model
     class << self
-      def get(params, selection: true)
+      def get(params, selection = true)
         create_request("ArticleChoiceOption.get", [selection, params])
       end
 

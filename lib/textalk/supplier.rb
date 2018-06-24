@@ -17,7 +17,7 @@ module Textalk
         create_request("Supplier.getSchema", [])
       end
 
-      def list(query = {}, selection: true)
+      def list(query = {}, selection = true)
         create_request("Supplier.list", [selection, query], object: Article)
       end
 

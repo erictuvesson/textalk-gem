@@ -17,7 +17,7 @@ module Textalk
         create_request("Theme.delete", [uid])
       end
 
-      def get(uid, selection: true)
+      def get(uid, selection = true)
         create_request("Theme.get", [uid, selection], object: Theme)
       end
 
@@ -25,7 +25,7 @@ module Textalk
         create_request("Theme.getSchema", [])
       end
 
-      def list(query = {}, selection: true)
+      def list(query = {}, selection = true)
         create_request("Theme.list", [selection, query], object: Theme)
       end
 

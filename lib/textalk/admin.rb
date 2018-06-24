@@ -9,7 +9,7 @@ module Textalk
         create_request("Admin.count", [query])
       end
 
-      def get(params, selection: true)
+      def get(params, selection = true)
         create_request("Admin.get", [selection, params])
       end
 
@@ -17,7 +17,7 @@ module Textalk
         create_request("Admin.getSchema", [])
       end
 
-      def list(query = {}, selection: true)
+      def list(query = {}, selection = true)
         create_request("Admin.list", [selection, query])
       end
 

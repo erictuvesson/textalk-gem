@@ -45,7 +45,7 @@ module Textalk
         create_request("Article.create", [patch, query])
       end
 
-      def get(uid, selection: true)
+      def get(uid, selection = true)
         create_request("Article.get", [uid, selection], object: Article)
       end
 
@@ -53,7 +53,7 @@ module Textalk
         create_request("Article.getSchema", [])
       end
 
-      def list(query = {}, selection: true)
+      def list(query = {}, selection = true)
         create_request("Article.list", [selection, query], object: Article)
       end
 

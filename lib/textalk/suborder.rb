@@ -5,7 +5,7 @@ module Textalk
   # http://api.textalk.se/webshop/classes/Suborder/
   class Suborder < Model
     class << self
-      def get(uid, selection: true)
+      def get(uid, selection = true)
         create_request("Suborder.get", [uid, selection], object: Suborder)
       end
 
