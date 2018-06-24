@@ -10,7 +10,7 @@ module Textalk
         id: 1
       }
 
-      @connection = Faraday.new(url: Textalk.build_url) do |faraday|
+      @connection = Faraday.new(url: Request.create_endpoint) do |faraday|
         faraday.request  :url_encoded
         faraday.response :logger if Textalk.debug
         faraday.adapter  Faraday.default_adapter
@@ -22,6 +22,13 @@ module Textalk
         req.headers["Content-Type"] = "application/json"
         req.body = @body.to_json
       end
+    end
+
+    def self.create_endpoint
+      raise "Missing endpoint" unless Textalk.endpoint
+      raise "Missing webshop id" unless Textalk.webshop_id
+      raise "Missing api key" unless Textalk.api_key
+      "#{Textalk.endpoint}?webshop=#{Textalk.webshop_id}&auth=#{Textalk.api_key}"
     end
   end
 end
