@@ -32,6 +32,10 @@ module Textalk
   autoload :Url, "textalk/url"
   autoload :Webshop, "textalk/webshop"
 
+  module Helpers
+    autoload :Excel, "textalk/helpers/excel"
+  end
+
   module Utils
     autoload :Backup, "textalk/utils/backup"
     autoload :Stock, "textalk/utils/stock"

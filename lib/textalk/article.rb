@@ -7,8 +7,26 @@ module Textalk
     def stock
       {
         total: @variables.dig(:stock, :stock),
-        variants: @variables[:variants]
+        variants: variants
       }
+    end
+
+    def variants
+      return nil unless @variables[:variants]
+      @variables[:variants].map do |variant| 
+        id = variant[:definedBy].keys.first
+        enum_id = variant[:definedBy].values.first.to_sym
+        { 
+          id: id,
+          enum_id: enum_id,
+          name: choices[id][:enumNames][enum_id],
+          stock: variant.dig(:overrides, :stock) 
+        } 
+      end
+    end
+
+    def choices(locale = :en)
+      @variables[:choiceSchema][locale][:properties]
     end
 
     def to_liquid

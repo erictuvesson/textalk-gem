@@ -1,16 +1,32 @@
 module Textalk
   module Utils
     module Stock
+      include Textalk::Helpers::Excel
+
       def generate_excel_workbook(article_query = {})
         xlsx = StringIO.new
         workbook = WriteXLSX.new(xlsx)
-        generate_excel_worksheet(workbook, "All Stock", article_query)
+        generate_excel_worksheet(workbook, "All Stock", Article.list(article_query))
         workbook.close
         xlsx
       end
 
-      def generate_excel_worksheet(workbook, name, article_query = {})
-        generate_data article_query
+      def generate_excel_workbook_per_article_group
+        xlsx = StringIO.new
+        workbook = WriteXLSX.new(xlsx)
+
+        groups = ArticleGroup.list.index_by(&:uid)
+        Article.list.group_by { |art| art[:articlegroup] }.each do |art_group|
+          group = groups[art_group.last.first[:articlegroup]]
+          generate_excel_worksheet(workbook, group.name, art_group.last, show_variants: true)
+        end
+
+        workbook.close
+        xlsx
+      end
+
+      def generate_excel_worksheet(workbook, name, articles, show_variants: false)
+        @articles = articles || Article.list
         
         worksheet = workbook.add_worksheet(name)
 
@@ -24,14 +40,27 @@ module Textalk
         worksheet.write(0, 1, "SKU", header_format)
         worksheet.set_column(2, 2, 30)
         worksheet.write(0, 2, "Name", header_format)
-        worksheet.set_column(3, 3, 10)
-        worksheet.write(0, 3, "Stock", header_format)
+        worksheet.set_column(3, 3, 20)
+        worksheet.write(0, 3, "Total Stock", header_format)
       
+        if show_variants
+          variants = articles.first.variants
+          variants&.each_with_index do |variant, index|
+            worksheet.write(0, 5 + index, variant[:name], header_format)
+          end
+        end
+
         @articles.each_with_index do |article, index|
-          worksheet.write(1 + index, 0, article["articleNumber"], content_format)
-          worksheet.write(1 + index, 1, article["sku"], content_format)
-          worksheet.write(1 + index, 2, article["name"]["sv"], content_format)
-          worksheet.write(1 + index, 3, article["stock"]["stock"], content_format)
+          worksheet.write(1 + index, 0, article[:articleNumber], content_format)
+          worksheet.write(1 + index, 1, article[:sku], content_format)
+          worksheet.write(1 + index, 2, article[:name][:sv], content_format)
+          worksheet.write(1 + index, 3, article[:stock][:stock], content_format)
+          
+          if show_variants
+            article.variants&.each_with_index do |variant, vi|
+              worksheet.write(1 + index, 5 + vi, variant[:stock], content_format)
+            end
+          end
         end
 
         # Add summery field
@@ -43,35 +72,6 @@ module Textalk
 
         worksheet.write(row + 1, 0, "=ROWS(A2:A#{row})", content_format)
         worksheet.write(row + 1, 3, "=SUM(D2:D#{row})", content_format)
-      end
-
-      def generate_data(article_query = {})
-        @articles = Article.list(article_query)
-      end
-
-      def header_format_properties
-        {
-          font: "Courier New",
-          bold: true,
-          align: "center",
-          bottom: 1
-        }
-      end
-
-      def content_format_properties
-        {
-          font: "Courier New"
-        }
-      end
-
-      def summery_format_properties
-        {
-          font: "Courier New",
-          bold: true,
-          align: "right",
-          bottom: 1,
-          top: 1
-        }
       end
 
       extend self

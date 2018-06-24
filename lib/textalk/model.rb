@@ -6,6 +6,10 @@ module Textalk
       @variables = variables.deep_symbolize_keys
     end
 
+    def uid
+      @variables.dig(:uid)
+    end
+
     def [](sym)
       @variables.dig(sym)
     end  
