@@ -21,7 +21,7 @@ module Textalk
           enum_id: enum_id,
           name: choices[id][:enumNames][enum_id],
           stock: variant.dig(:overrides, :stock) 
-        } 
+        }
       end
     end
 
