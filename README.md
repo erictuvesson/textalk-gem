@@ -1,5 +1,7 @@
 # Textalk
-Short description and motivation.
+Lightweight API for [Textalk](https://www.textalk.se/).
+
+> I do not use Textalk anymore, so won't update this gem, but will keep it around.
 
 ## Usage
 How to use my plugin.
